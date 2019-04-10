@@ -92,8 +92,11 @@ HTMLWidgets.widget({
           }
         }
 
-
-        var formatNumber = d3.format(".0d"),
+        var commaFormat = d3.format(",");
+        var formatNumber = function(num){
+           // The expression /,/g is a regular expression that matches all commas.
+           return commaFormat(num).replace(/,/g, ".");
+        };        
         format = function(d) { 
             if (typeof d === "string") return d;
             return formatNumber(d); 
